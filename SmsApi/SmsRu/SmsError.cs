@@ -6,23 +6,13 @@ using SmsApi.Domain;
 
 namespace SmsRu
 {
-    public class ErrorData : IErrorData
-    {
-        public int Code { get; set; }
-        public string Error { get; set; }
-
-        public ErrorData(int code, string error)
-        {
-            Code = code;
-            Error = error;
-        }
-    }
     public class SmsError : ISmsError
     {
 
 
         Dictionary<int, ErrorData> m_errorDatas = new Dictionary<int, ErrorData>()
                                                    {
+                                                       {-1,new ErrorData(-1,"Сообщение не найдено.")},
                                                      {100, new ErrorData(100,"Сообщение принято к отправке. На следующих строчках вы найдете идентификаторы отправленных сообщений в том же порядке, в котором вы указали номера, на которых совершалась отправка.")},
                                                      {200, new ErrorData(200,"Неправильный api_id")},
                                                      {201, new ErrorData(201,"Не хватает средств на лицевом счету")},
@@ -45,7 +35,8 @@ namespace SmsRu
 
         public IErrorData GetError(string responceStr)
         {
-            responceStr = responceStr.Substring(0, responceStr.IndexOf("\n"));
+            if(responceStr.Contains("\n"))
+                responceStr = responceStr.Substring(0, responceStr.IndexOf("\n"));
             int temp = -1;
             if (int.TryParse(responceStr, out temp))
             {

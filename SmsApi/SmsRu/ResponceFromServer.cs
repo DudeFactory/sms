@@ -20,7 +20,8 @@ namespace SmsRu
             if (error == null)
                 throw new ArgumentNullException();
             ErrorData = error;
-            Data = data.Substring(data.IndexOf("\n")+1);
+            if(error.Code==100)
+                Data = data.Substring(data.IndexOf("\n")+1);
 
         }
         public ResponceFromServer(int code, string error, string data)

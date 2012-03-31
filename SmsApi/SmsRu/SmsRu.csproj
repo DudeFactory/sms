@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorData.cs" />
     <Compile Include="ResponceFromServer.cs" />
     <Compile Include="SmsBase.cs" />
     <Compile Include="Sms.cs" />

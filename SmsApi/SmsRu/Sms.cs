@@ -72,6 +72,17 @@ namespace SmsRu
             throw new NotImplementedException();
         }
 
+        public IResponceFromServer GetStatusSms(string idSms)
+        {
+            string url = "http://sms.ru/sms/status";
+            var builder = new StringBuilder();
+            builder.Append(string.Format("{0}={1}&", "id", idSms));
+
+            var data = m_baseSms.SendRequest(url, builder);
+            var responceFromServer = new ResponceFromServer(data);
+            return responceFromServer;
+        }
+
         #endregion
     }
 }

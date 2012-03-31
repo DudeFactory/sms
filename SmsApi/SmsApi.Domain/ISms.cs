@@ -11,8 +11,8 @@ namespace SmsApi.Domain
         IResponceFromServer Send(string[] to, string text, string from, int time);
         IResponceFromServer Send(string[] to, string text, string from, int time, string login, string token, string sig);
         IResponceFromServer Send(string[] to, string text, string from, int time, params object[] objects);
-
-
         IResponceFromServer Send(string[] to, string text, SendType sendType);
+
+        IResponceFromServer GetStatusSms(string idSms);
     }
 }
